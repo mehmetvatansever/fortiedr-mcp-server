@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "fortiedr": {
+      "command": "/absolute/path/to/fortiedr-mcp/.venv/bin/python",
+      "args": ["-m", "fortiedr_mcp"],
+      "env": {
+        "FORTIEDR_HOST": "edr.your-company.com",
+        "FORTIEDR_USER": "api_user",
+        "FORTIEDR_PASSWORD": "change-me",
+        "FORTIEDR_READ_ONLY": "true",
+        "FORTIEDR_VERIFY_SSL": "true"
+      }
+    }
+  }
+}

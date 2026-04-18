@@ -1,0 +1,82 @@
+[project]
+name = "fortiedr-mcp"
+version = "0.1.0"
+description = "Model Context Protocol server for Fortinet FortiEDR — designed for MDR/MSSP operations"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+keywords = [
+    "mcp", "model-context-protocol", "fortiedr", "fortinet",
+    "edr", "mdr", "mssp", "security", "soc", "claude",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+    "Topic :: System :: Monitoring",
+]
+authors = [
+    { name = "FortiEDR MCP contributors" },
+]
+dependencies = [
+    "mcp[cli]>=1.2.0",
+    "httpx>=0.27.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.3",
+    "mypy>=1.8",
+]
+
+[project.scripts]
+fortiedr-mcp = "fortiedr_mcp.server:main"
+
+[project.urls]
+Homepage = "https://github.com/YOUR-ORG/fortiedr-mcp"
+Documentation = "https://github.com/YOUR-ORG/fortiedr-mcp/tree/main/docs"
+Issues = "https://github.com/YOUR-ORG/fortiedr-mcp/issues"
+Changelog = "https://github.com/YOUR-ORG/fortiedr-mcp/blob/main/CHANGELOG.md"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+fortiedr_mcp = ["py.typed"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF"]
+ignore = [
+    "E501",  # line-too-long, uzun docstring'lere izin ver
+]
+
+[tool.ruff.lint.per-file-ignores]
+"src/fortiedr_mcp/tools/_generated/*.py" = ["ALL"]  # auto-generated, lint etme
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = false
+warn_unused_ignores = true
+ignore_missing_imports = true
